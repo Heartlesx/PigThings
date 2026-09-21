@@ -9,6 +9,7 @@ import com.liaoliao.flighthelmet.network.PacketSearchContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.gui.GuiControls;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.settings.KeyBinding;
@@ -118,7 +119,11 @@ public final class ClientEvents {
     }
 
     private static void startContainerSearch(Minecraft minecraft, EntityPlayerSP player) {
-        if (minecraft.currentScreen instanceof GuiChat || ItemManagerHoverResolver.isSearchFieldFocused()) {
+        // 按键绑定界面（原版 GuiControls，整合包里的 GuiNewControls 也继承它）用 keyTyped 把下一个按键
+        // 吃掉当作新的键位绑定，这个按键不属于我们；抢过来的话界面会被关掉并立刻开始搜索。
+        if (minecraft.currentScreen instanceof GuiChat
+                || minecraft.currentScreen instanceof GuiControls
+                || ItemManagerHoverResolver.isSearchFieldFocused()) {
             return;
         }
         // 与 1.21 线一致的优先级：物品管理器悬停 > 容器槽位 > 上一次的提示物品。
@@ -141,7 +146,15 @@ public final class ClientEvents {
             return;
         }
         if (minecraft.currentScreen != null) {
-            minecraft.displayGuiScreen(null);
+            // 关容器界面必须走原版路径：EntityPlayerSP.closeScreen() 会先发 CPacketCloseWindow，
+            // 服务端收到才会执行 openContainer.onContainerClosed（工作台据此把合成格里的物品丢回玩家）。
+            // 直接 displayGuiScreen(null) 只关客户端界面，服务端容器继续开着，里面的物品会在
+            // 之后打开别的界面、openContainer 被替换时被静默丢弃（1.7.5 及之前就是这个行为）。
+            if (player.openContainer != null && player.openContainer != player.inventoryContainer) {
+                player.closeScreen();
+            } else {
+                minecraft.displayGuiScreen(null);
+            }
         }
         player.sendStatusMessage(new TextComponentTranslation("message.pigthings.search_started"), true);
         ModNetwork.CHANNEL.sendToServer(new PacketSearchContainer(target, openedContainer));
