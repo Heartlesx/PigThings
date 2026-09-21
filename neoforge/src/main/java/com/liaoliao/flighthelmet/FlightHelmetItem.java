@@ -33,6 +33,12 @@ public final class FlightHelmetItem extends ArmorItem {
     }
 
     @Override
+    public ResourceLocation getArmorTexture(ItemStack stack, net.minecraft.world.entity.Entity entity,
+            net.minecraft.world.entity.EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
+        return ResourceLocation.fromNamespaceAndPath("pigthings", "textures/item/pig_straw_hat.png");
+    }
+
+    @Override
     public boolean isFoil(ItemStack stack) {
         return true;
     }

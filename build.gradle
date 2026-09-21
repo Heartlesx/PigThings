@@ -170,7 +170,8 @@ tasks.named('processResources', ProcessResources).configure {
 
 // Example for how to get properties into the manifest for reading at runtime.
 tasks.named('jar', Jar).configure {
-    destinationDirectory = file('../Mods/Pigthings Mods')
+    destinationDirectory = layout.buildDirectory.dir('libs')
+    archiveFileName = "${mod_id}-${mod_version}-forge-${minecraft_version}.jar"
     // The original source tree was deleted. Keep the recovered 1.4.5 classes/resources
     // in every build, while allowing the restored sources and new ring resources to win.
     from(zipTree(file('libs/Pigthings-1.4.5.jar'))) {

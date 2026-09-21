@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "minecraft:item/diamond_helmet"
-  }
+  "parent": "pigthings:item/pig_straw_hat"
 }

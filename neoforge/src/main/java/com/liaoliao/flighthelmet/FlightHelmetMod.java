@@ -27,6 +27,8 @@ public final class FlightHelmetMod {
     public static final DeferredItem<Item> FLIGHT_HELMET;
     public static final DeferredItem<Item> NICE_RING;
     public static final DeferredItem<Item> NICE_PICKAXE;
+    public static final DeferredItem<Item> PIG_INGOT;
+    public static final DeferredItem<Item> CARROT_SABER;
 
     public FlightHelmetMod(IEventBus modEventBus, ModContainer modContainer) {
         ITEMS.register(modEventBus);
@@ -40,6 +42,10 @@ public final class FlightHelmetMod {
             event.accept(FLIGHT_HELMET);
             event.accept(NICE_RING);
             event.accept(NICE_PICKAXE);
+        } else if (event.getTabKey().equals(CreativeModeTabs.COMBAT)) {
+            event.accept(CARROT_SABER);
+        } else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
+            event.accept(PIG_INGOT);
         }
     }
 
@@ -62,5 +68,9 @@ public final class FlightHelmetMod {
                 () -> new NicePickaxeItem(new Item.Properties()
                         .attributes(DiggerItem.createAttributes(Tiers.NETHERITE, 8.0F, 20.0F))
                         .component(DataComponents.UNBREAKABLE, new Unbreakable(true))));
+        PIG_INGOT = ITEMS.register("pig_ingot", () -> new Item(new Item.Properties()));
+        CARROT_SABER = ITEMS.register("carrot_saber",
+                () -> new net.minecraft.world.item.SwordItem(Tiers.DIAMOND, new Item.Properties()
+                        .attributes(net.minecraft.world.item.SwordItem.createAttributes(Tiers.DIAMOND, 3, -2.4F))));
     }
 }

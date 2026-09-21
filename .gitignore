@@ -23,3 +23,15 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
+
+# Local builds, runtime data and temporary checks
+.buildtest/
+.gradle-home*/
+dist/
+run-server/
+logs/
+*.log
+/neoforge/*.jar
+*.tmp
+.DS_Store
+Thumbs.db

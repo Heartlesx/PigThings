@@ -26,6 +26,8 @@ public final class FlightHelmetMod {
     public static final RegistryObject<Item> VEIN_MINING_PICKAXE;
     public static final RegistryObject<Item> NICE_RING;
     public static final RegistryObject<Item> NICE_PICKAXE;
+    public static final RegistryObject<Item> PIG_INGOT;
+    public static final RegistryObject<Item> CARROT_SABER;
 
     public FlightHelmetMod() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -41,6 +43,10 @@ public final class FlightHelmetMod {
             event.accept(VEIN_MINING_PICKAXE);
             event.accept(NICE_RING);
             event.accept(NICE_PICKAXE);
+        } else if (event.getTabKey().equals(CreativeModeTabs.COMBAT)) {
+            event.accept(CARROT_SABER);
+        } else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
+            event.accept(PIG_INGOT);
         }
     }
 
@@ -60,5 +66,8 @@ public final class FlightHelmetMod {
                 () -> new VeinMiningPickaxeItem(new Item.Properties().stacksTo(1)));
         NICE_RING = ITEMS.register("nice_ring", () -> new NiceRingItem(new Item.Properties().stacksTo(1)));
         NICE_PICKAXE = ITEMS.register("nice_pickaxe", () -> new NicePickaxeItem(new Item.Properties().stacksTo(1)));
+        PIG_INGOT = ITEMS.register("pig_ingot", () -> new Item(new Item.Properties()));
+        CARROT_SABER = ITEMS.register("carrot_saber",
+                () -> new net.minecraft.world.item.SwordItem(net.minecraft.world.item.Tiers.DIAMOND, 3, -2.4F, new Item.Properties()));
     }
 }

@@ -33,3 +33,5 @@ tooltip.pigthings.nice_pickaxe.precise.off=精准采集：关闭
 screen.pigthings.nice_pickaxe.title=障碍破坏者设置
 screen.pigthings.nice_pickaxe.precise.on=精准采集：开启
 screen.pigthings.nice_pickaxe.precise.off=精准采集：关闭
+item.pigthings.pig_ingot.name=猪咪锭
+item.pigthings.carrot_saber.name=胡萝卜唐刀

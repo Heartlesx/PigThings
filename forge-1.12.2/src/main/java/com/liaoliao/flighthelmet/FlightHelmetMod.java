@@ -2,6 +2,7 @@ package com.liaoliao.flighthelmet;
 
 import com.liaoliao.flighthelmet.client.PigThingsKeys;
 import com.liaoliao.flighthelmet.network.ModNetwork;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.config.Configuration;
@@ -25,6 +26,8 @@ public final class FlightHelmetMod {
     public static Item FLIGHT_HELMET;
     public static Item NICE_RING;
     public static Item NICE_PICKAXE;
+    public static Item PIG_INGOT;
+    public static Item CARROT_SABER;
 
     public static int SEARCH_RANGE_X = 32;
     public static int SEARCH_RANGE_Y = 32;
@@ -63,8 +66,17 @@ public final class FlightHelmetMod {
             FLIGHT_HELMET = new FlightHelmetItem(material);
             NICE_RING = new NiceRingItem();
             NICE_PICKAXE = new NicePickaxeItem();
+            // 猪咪锭：普通材料，默认堆叠 64，放进「材料」创造标签页。
+            PIG_INGOT = new Item()
+                    .setRegistryName(MOD_ID, "pig_ingot")
+                    .setTranslationKey(MOD_ID + ".pig_ingot")
+                    .setCreativeTab(CreativeTabs.MATERIALS);
+            CARROT_SABER = new net.minecraft.item.ItemSword(Item.ToolMaterial.DIAMOND)
+                    .setRegistryName(MOD_ID, "carrot_saber")
+                    .setTranslationKey(MOD_ID + ".carrot_saber")
+                    .setCreativeTab(CreativeTabs.COMBAT);
             IForgeRegistry<Item> registry = event.getRegistry();
-            registry.registerAll(FLIGHT_HELMET, NICE_RING, NICE_PICKAXE);
+            registry.registerAll(FLIGHT_HELMET, NICE_RING, NICE_PICKAXE, PIG_INGOT, CARROT_SABER);
         }
     }
 
@@ -75,12 +87,16 @@ public final class FlightHelmetMod {
 
         @SubscribeEvent
         public static void registerModels(net.minecraftforge.client.event.ModelRegistryEvent event) {
+            net.minecraftforge.client.model.ModelLoader.setCustomModelResourceLocation(CARROT_SABER, 0,
+                    new net.minecraft.client.renderer.block.model.ModelResourceLocation(MOD_ID + ":carrot_saber", "inventory"));
             net.minecraftforge.client.model.ModelLoader.setCustomModelResourceLocation(FLIGHT_HELMET, 0,
                     new net.minecraft.client.renderer.block.model.ModelResourceLocation(MOD_ID + ":nice_helmet", "inventory"));
             net.minecraftforge.client.model.ModelLoader.setCustomModelResourceLocation(NICE_RING, 0,
                     new net.minecraft.client.renderer.block.model.ModelResourceLocation(MOD_ID + ":nice_ring", "inventory"));
             net.minecraftforge.client.model.ModelLoader.setCustomModelResourceLocation(NICE_PICKAXE, 0,
                     new net.minecraft.client.renderer.block.model.ModelResourceLocation(MOD_ID + ":nice_pickaxe", "inventory"));
+            net.minecraftforge.client.model.ModelLoader.setCustomModelResourceLocation(PIG_INGOT, 0,
+                    new net.minecraft.client.renderer.block.model.ModelResourceLocation(MOD_ID + ":pig_ingot", "inventory"));
         }
     }
 }

@@ -35,5 +35,7 @@
   "tooltip.pigthings.nice_pickaxe.precise.off": "Silk Touch: Off",
   "screen.pigthings.nice_pickaxe.title": "Obstacle Breaker Settings",
   "screen.pigthings.nice_pickaxe.precise.on": "Silk Touch: On",
-  "screen.pigthings.nice_pickaxe.precise.off": "Silk Touch: Off"
+  "screen.pigthings.nice_pickaxe.precise.off": "Silk Touch: Off",
+  "item.pigthings.pig_ingot": "Pig-Mi Ingot",
+  "item.pigthings.carrot_saber": "Carrot Tang Saber"
 }

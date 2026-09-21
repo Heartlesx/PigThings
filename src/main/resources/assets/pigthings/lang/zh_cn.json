@@ -35,5 +35,7 @@
   "tooltip.pigthings.nice_pickaxe.precise.off": "\u7cbe\u51c6\u91c7\u96c6\uff1a\u5173\u95ed",
   "screen.pigthings.nice_pickaxe.title": "\u969c\u788d\u7834\u574f\u8005\u8bbe\u7f6e",
   "screen.pigthings.nice_pickaxe.precise.on": "\u7cbe\u51c6\u91c7\u96c6\uff1a\u5f00\u542f",
-  "screen.pigthings.nice_pickaxe.precise.off": "\u7cbe\u51c6\u91c7\u96c6\uff1a\u5173\u95ed"
+  "screen.pigthings.nice_pickaxe.precise.off": "\u7cbe\u51c6\u91c7\u96c6\uff1a\u5173\u95ed",
+  "item.pigthings.pig_ingot": "\u732a\u54aa\u952d",
+  "item.pigthings.carrot_saber": "胡萝卜唐刀"
 }

@@ -86,7 +86,8 @@ tasks.named('processResources', ProcessResources).configure {
 
 // Build output goes to the project root.
 tasks.named('jar', Jar).configure {
-    destinationDirectory = file(project.projectDir)
+    destinationDirectory = layout.buildDirectory.dir('libs')
+    archiveFileName = "${mod_id}-${mod_version}-${minecraft_version}.jar"
     manifest {
         attributes([
                 'Specification-Title'     : mod_id,

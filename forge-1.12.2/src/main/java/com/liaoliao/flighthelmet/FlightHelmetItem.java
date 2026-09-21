@@ -24,6 +24,20 @@ public final class FlightHelmetItem extends ItemArmor {
     }
 
     @Override
+    @net.minecraftforge.fml.relauncher.SideOnly(net.minecraftforge.fml.relauncher.Side.CLIENT)
+    public net.minecraft.client.model.ModelBiped getArmorModel(net.minecraft.entity.EntityLivingBase entity,
+            ItemStack stack, EntityEquipmentSlot slot, net.minecraft.client.model.ModelBiped original) {
+        return slot == EntityEquipmentSlot.HEAD
+                ? com.liaoliao.flighthelmet.client.PigHatArmorModel.INSTANCE : original;
+    }
+
+    @Override
+    public String getArmorTexture(ItemStack stack, net.minecraft.entity.Entity entity,
+            EntityEquipmentSlot slot, String type) {
+        return "pigthings:textures/item/pig_straw_hat.png";
+    }
+
+    @Override
     public boolean hasEffect(ItemStack stack) {
         return true;
     }

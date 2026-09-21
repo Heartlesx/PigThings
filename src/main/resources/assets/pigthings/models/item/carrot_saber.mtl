@@ -1,0 +1,9 @@
+# Forge resolves this relative to the OBJ's resource directory.
+newmtl carrot_saber
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+forge_TintIndex -1
+map_Kd pigthings:item/carrot_saber_obj
